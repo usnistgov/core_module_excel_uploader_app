@@ -4,12 +4,12 @@ from xlrd import open_workbook
 
 from core_module_excel_uploader_app.views.forms import ExcelUploaderForm
 from core_parser_app.tools.modules.exceptions import ModuleError
-from core_parser_app.tools.modules.views.builtin.popup_module import PopupModule
+from core_parser_app.tools.modules.views.builtin.popup_module import AbstractPopupModule
 from core_parser_app.tools.modules.views.module import AbstractModule
 from xml_utils.xsd_tree.xsd_tree import XSDTree
 
 
-class ExcelUploaderModule(PopupModule):
+class ExcelUploaderModule(AbstractPopupModule):
     """ Excel Uploader Module
     """
 
@@ -22,9 +22,9 @@ class ExcelUploaderModule(PopupModule):
         popup_content = AbstractModule.render_template('core_module_excel_uploader_app/excel_uploader.html',
                                                        {'form': ExcelUploaderForm()})
 
-        PopupModule.__init__(self, popup_content=popup_content, button_label='Upload Excel File',
-                             scripts=['core_module_excel_uploader_app/js/excel_uploader.js'],
-                             styles=['core_module_excel_uploader_app/css/excel_uploader.css'])
+        AbstractPopupModule.__init__(self, popup_content=popup_content, button_label='Upload Excel File',
+                                     scripts=['core_module_excel_uploader_app/js/excel_uploader.js'],
+                                     styles=['core_module_excel_uploader_app/css/excel_uploader.css'])
 
     def _retrieve_data(self, request):
         """ Return module's data
