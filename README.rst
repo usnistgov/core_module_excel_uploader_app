@@ -16,3 +16,9 @@ Quick start
       'core_module_excel_uploader_app',
     ]
 
+2. Include the core_module_excel_uploader_app URLconf in your project urls.py
+---------------------------------------------------------------------
+
+.. code:: python
+
+    url(r'^', include('core_module_excel_uploader_app.urls')),
