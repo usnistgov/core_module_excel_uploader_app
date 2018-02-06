@@ -19,12 +19,18 @@ class ExcelUploaderModule(AbstractPopupModule):
         self.table = None
         self.table_name = None
 
-        popup_content = AbstractModule.render_template('core_module_excel_uploader_app/excel_uploader.html',
-                                                       {'form': ExcelUploaderForm()})
-
-        AbstractPopupModule.__init__(self, popup_content=popup_content, button_label='Upload Excel File',
+        AbstractPopupModule.__init__(self, button_label='Upload Excel File',
                                      scripts=['core_module_excel_uploader_app/js/excel_uploader.js'],
                                      styles=['core_module_excel_uploader_app/css/excel_uploader.css'])
+
+    def _get_popup_content(self):
+        """ Return popup content
+
+        Returns:
+
+        """
+        return AbstractModule.render_template('core_module_excel_uploader_app/excel_uploader.html',
+                                              {'form': ExcelUploaderForm()})
 
     def _retrieve_data(self, request):
         """ Return module's data
