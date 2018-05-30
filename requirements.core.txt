@@ -1,1 +1,2 @@
+core_parser_app==1.0.0-beta3
 xml_utils==1.0.0-beta1
