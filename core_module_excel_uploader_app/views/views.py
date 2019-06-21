@@ -1,5 +1,7 @@
 """ Excel uploader module
 """
+import logging
+
 from xlrd import open_workbook
 
 from core_module_excel_uploader_app.views.forms import ExcelUploaderForm
@@ -7,6 +9,8 @@ from core_parser_app.tools.modules.exceptions import ModuleError
 from core_parser_app.tools.modules.views.builtin.popup_module import AbstractPopupModule
 from core_parser_app.tools.modules.views.module import AbstractModule
 from xml_utils.xsd_tree.xsd_tree import XSDTree
+
+logger = logging.getLogger(__name__)
 
 
 class ExcelUploaderModule(AbstractPopupModule):
@@ -96,8 +100,8 @@ class ExcelUploaderModule(AbstractPopupModule):
                         self.table['values'].append(row_values)
 
                 self.table_name = str(input_excel)
-            except:
-                pass
+            except Exception as e:
+                logger.warning("_retrieve_data threw an exception: {0}".format(str(e)))
 
             data = ExcelUploaderModule.extract_xml_from_table(self.table_name, self.table)
 
