@@ -24,9 +24,10 @@ class ExcelUploaderModule(AbstractPopupModule):
         self.table_name = None
 
         AbstractPopupModule.__init__(
-            self, button_label="Upload Excel File",
+            self,
+            button_label="Upload Excel File",
             scripts=["core_module_excel_uploader_app/js/excel_uploader.js"],
-            styles=["core_module_excel_uploader_app/css/excel_uploader.css"]
+            styles=["core_module_excel_uploader_app/css/excel_uploader.css"],
         )
 
     def _get_popup_content(self):
@@ -35,8 +36,10 @@ class ExcelUploaderModule(AbstractPopupModule):
         Returns:
 
         """
-        return AbstractModule.render_template("core_module_excel_uploader_app/excel_uploader.html",
-                                              {"form": ExcelUploaderForm()})
+        return AbstractModule.render_template(
+            "core_module_excel_uploader_app/excel_uploader.html",
+            {"form": ExcelUploaderForm()},
+        )
 
     def _retrieve_data(self, request):
         """ Return module"s data
@@ -50,13 +53,12 @@ class ExcelUploaderModule(AbstractPopupModule):
         data = ""
         if request.method == "GET":
             if "data" in request.GET and request.GET["data"] != "":
-                xml_table = XSDTree.fromstring("<table>" + request.GET["data"] + "</table>")
+                xml_table = XSDTree.fromstring(
+                    "<table>" + request.GET["data"] + "</table>"
+                )
 
                 self.table_name = "name"
-                self.table = {
-                    "headers": [],
-                    "values": []
-                }
+                self.table = {"headers": [], "values": []}
 
                 headers = xml_table[0]
                 for header in headers.iter("column"):
@@ -71,7 +73,9 @@ class ExcelUploaderModule(AbstractPopupModule):
                         value_list.append(data.text)
 
                     self.table["values"].append(value_list)
-                data = ExcelUploaderModule.extract_xml_from_table(self.table_name, self.table)
+                data = ExcelUploaderModule.extract_xml_from_table(
+                    self.table_name, self.table
+                )
         elif request.method == "POST":
             form = ExcelUploaderForm(request.POST, request.FILES)
             if not form.is_valid():
@@ -84,10 +88,7 @@ class ExcelUploaderModule(AbstractPopupModule):
                 book = open_workbook(file_contents=input_excel.read())
                 sheet = book.sheet_by_index(0)
 
-                self.table = {
-                    "headers": [],
-                    "values": []
-                }
+                self.table = {"headers": [], "values": []}
 
                 for row_index in range(sheet.nrows):
                     row_values = []
@@ -107,7 +108,9 @@ class ExcelUploaderModule(AbstractPopupModule):
             except Exception as e:
                 logger.warning("_retrieve_data threw an exception: {0}".format(str(e)))
 
-            data = ExcelUploaderModule.extract_xml_from_table(self.table_name, self.table)
+            data = ExcelUploaderModule.extract_xml_from_table(
+                self.table_name, self.table
+            )
 
         return data
 
