@@ -14,12 +14,10 @@ logger = logging.getLogger(__name__)
 
 
 class ExcelUploaderModule(AbstractPopupModule):
-    """ Excel Uploader Module
-    """
+    """Excel Uploader Module"""
 
     def __init__(self):
-        """ Initialize module
-        """
+        """Initialize module"""
         self.table = None
         self.table_name = None
 
@@ -31,7 +29,7 @@ class ExcelUploaderModule(AbstractPopupModule):
         )
 
     def _get_popup_content(self):
-        """ Return popup content
+        """Return popup content
 
         Returns:
 
@@ -42,7 +40,7 @@ class ExcelUploaderModule(AbstractPopupModule):
         )
 
     def _retrieve_data(self, request):
-        """ Return module"s data
+        """Return module"s data
 
         Args:
             request:
@@ -115,7 +113,7 @@ class ExcelUploaderModule(AbstractPopupModule):
         return data
 
     def _render_data(self, request):
-        """ Return module's data rendering
+        """Return module's data rendering
 
         Args:
             request:
@@ -130,7 +128,7 @@ class ExcelUploaderModule(AbstractPopupModule):
 
     @staticmethod
     def is_table_valid(table_name, table):
-        """ Check if table is valid
+        """Check if table is valid
 
         Args:
             table_name:
@@ -155,7 +153,7 @@ class ExcelUploaderModule(AbstractPopupModule):
 
     @staticmethod
     def extract_xml_from_table(table_name, table):
-        """ Transform table into XML string
+        """Transform table into XML string
 
         Args:
             table_name:
@@ -204,7 +202,7 @@ class ExcelUploaderModule(AbstractPopupModule):
 
     @staticmethod
     def extract_html_from_table(table_name, table):
-        """ Transform table into HTML string
+        """Transform table into HTML string
 
         Args:
             table_name:
