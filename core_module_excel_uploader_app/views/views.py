@@ -34,6 +34,16 @@ class ExcelUploaderModule(AbstractPopupModule):
         Returns:
 
         """
+        module_id = None
+
+        if self.request:
+            module_id = self.request.GET.get("module_id", None)
+
+        # create the from and set an unique id
+        form = ExcelUploaderForm()
+        form.fields["file"].widget.attrs.update(
+            {"id": "file-input-%s" % str(module_id)}
+        )
         return AbstractModule.render_template(
             "core_module_excel_uploader_app/excel_uploader.html",
             {"form": ExcelUploaderForm()},
