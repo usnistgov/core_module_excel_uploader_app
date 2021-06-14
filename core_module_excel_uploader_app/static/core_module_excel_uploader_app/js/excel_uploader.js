@@ -7,5 +7,4 @@ let excelUploaderPopupOptions = {
     getData: saveExcelUploaderData
 }
 
-
 configurePopUp('module-excel-uploader', excelUploaderPopupOptions);

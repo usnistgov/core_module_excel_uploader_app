@@ -7,7 +7,6 @@ from xlrd import open_workbook
 from core_module_excel_uploader_app.views.forms import ExcelUploaderForm
 from core_parser_app.tools.modules.exceptions import ModuleError
 from core_parser_app.tools.modules.views.builtin.popup_module import AbstractPopupModule
-from core_parser_app.tools.modules.views.module import AbstractModule
 from xml_utils.xsd_tree.xsd_tree import XSDTree
 
 logger = logging.getLogger(__name__)
@@ -24,7 +23,10 @@ class ExcelUploaderModule(AbstractPopupModule):
         AbstractPopupModule.__init__(
             self,
             button_label="Upload Excel File",
-            scripts=["core_module_excel_uploader_app/js/excel_uploader.js"],
+            scripts=[
+                "core_parser_app/js/commons/file_uploader.js",
+                "core_module_excel_uploader_app/js/excel_uploader.js",
+            ],
             styles=["core_module_excel_uploader_app/css/excel_uploader.css"],
         )
 
@@ -40,13 +42,16 @@ class ExcelUploaderModule(AbstractPopupModule):
             module_id = self.request.GET.get("module_id", None)
 
         # create the from and set an unique id
-        form = ExcelUploaderForm()
-        form.fields["file"].widget.attrs.update(
+        excel_uploader_form = ExcelUploaderForm()
+        excel_uploader_form.fields["file"].widget.attrs.update(
             {"id": "file-input-%s" % str(module_id)}
         )
-        return AbstractModule.render_template(
+        return super().render_template(
             "core_module_excel_uploader_app/excel_uploader.html",
-            {"form": ExcelUploaderForm()},
+            {
+                "form": excel_uploader_form,
+                "module_id": module_id,
+            },
         )
 
     def _retrieve_data(self, request):
