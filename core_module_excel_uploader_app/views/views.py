@@ -5,7 +5,9 @@ import logging
 from xlrd import open_workbook
 
 from core_parser_app.tools.modules.exceptions import ModuleError
-from core_parser_app.tools.modules.views.builtin.popup_module import AbstractPopupModule
+from core_parser_app.tools.modules.views.builtin.popup_module import (
+    AbstractPopupModule,
+)
 from xml_utils.xsd_tree.xsd_tree import XSDTree
 from core_module_excel_uploader_app.views.forms import ExcelUploaderForm
 
@@ -119,7 +121,9 @@ class ExcelUploaderModule(AbstractPopupModule):
 
                 self.table_name = str(input_excel)
             except Exception as exception:
-                logger.warning("_retrieve_data threw an exception: %s", str(exception))
+                logger.warning(
+                    "_retrieve_data threw an exception: %s", str(exception)
+                )
 
             data = ExcelUploaderModule.extract_xml_from_table(
                 self.table_name, self.table
@@ -139,7 +143,9 @@ class ExcelUploaderModule(AbstractPopupModule):
         if self.data is None:
             return "No file selected"
 
-        return ExcelUploaderModule.extract_html_from_table(self.table_name, self.table)
+        return ExcelUploaderModule.extract_html_from_table(
+            self.table_name, self.table
+        )
 
     @staticmethod
     def is_table_valid(table_name, table):
