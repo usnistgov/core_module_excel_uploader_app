@@ -1,7 +1,7 @@
 core_module_excel_uploader_app
 ==============================
 
-Excel Uploader module for the parser core project.
+Excel Uploader module for the parser core project. A sample file is provided in the static folder.
 
 Quick start
 ===========
