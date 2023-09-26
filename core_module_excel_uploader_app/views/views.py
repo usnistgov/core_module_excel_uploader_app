@@ -162,7 +162,7 @@ class ExcelUploaderModule(AbstractPopupModule):
         if table_name is None:
             return False
 
-        if type(table) != dict:
+        if not isinstance(table, dict):
             return False
 
         table_keys_set = set(table.keys())
