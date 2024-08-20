@@ -1,5 +1,6 @@
 """ Excel uploader module
 """
+
 import logging
 
 from xlrd import open_workbook

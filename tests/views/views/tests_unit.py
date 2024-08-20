@@ -1,5 +1,6 @@
 """ Unit tests for core_module_excel_uploader_app views.
 """
+
 from unittest import TestCase
 
 from core_module_excel_uploader_app.views.views import ExcelUploaderModule
