@@ -1,5 +1,4 @@
-""" Excel Uploader forms
-"""
+"""Excel Uploader forms"""
 
 from django import forms
 

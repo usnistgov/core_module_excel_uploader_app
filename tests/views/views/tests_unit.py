@@ -1,5 +1,4 @@
-""" Unit tests for core_module_excel_uploader_app views.
-"""
+"""Unit tests for core_module_excel_uploader_app views."""
 
 from unittest import TestCase
 

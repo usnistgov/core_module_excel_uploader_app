@@ -1,5 +1,4 @@
-""" Excel uploader module
-"""
+"""Excel uploader module"""
 
 import logging
 

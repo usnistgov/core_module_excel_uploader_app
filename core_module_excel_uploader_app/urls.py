@@ -1,5 +1,4 @@
-""" Url router for the excel uploader module
-"""
+"""Url router for the excel uploader module"""
 
 from django.urls import re_path
 
